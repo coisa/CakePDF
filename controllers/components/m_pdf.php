@@ -12,7 +12,6 @@
  * @link https://github.com/coisa/CakePDF
  */
 
-
 App::import('Vendor', 'mpdf50/mpdf');
 
 /**
