@@ -77,5 +77,5 @@ In addition to this you can create a header `app/View/Elements/pdf/header.ctp` o
     ...
 
 ### Additional Methods
-- setFilename($filename) : It will change the output filename.
-- addStyle($files) : Add css expressions to render in pdf view. The $files argument accepts a string path of file, or an array of path files (it automatically refer to folder `webroot/css/`).
+- `setFilename($filename)` : It will change the output filename.
+- `addStyle($files)` : Add css expressions to render in pdf view. The `$files` argument accepts a string path of file, or an array of path files (it automatically refer to folder `webroot/css/`).
