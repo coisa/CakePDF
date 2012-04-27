@@ -37,7 +37,7 @@ By default CakePdf use the prefix `pdf` to render actions.
 If you want to change it you can set a `prefix` property on component.
 
     ...
-    public $component = array(
+    public $components = array(
         'CakePdf.CakePdf' => array(
             'prefix' => 'mypdf'
         )
@@ -54,7 +54,7 @@ You can also set a custom layout, filename, orientation, charset, paper.
 By default we have the following properties:
 
     ...
-    public $component = array(
+    public $components = array(
         'CakePdf.CakePdf' => array(
             'prefix' => 'pdf',
             'layout' => 'pdf',
@@ -68,7 +68,7 @@ By default we have the following properties:
 In addition to this you can create a header `app/View/Elements/pdf/header.ctp` or footer `app/View/Elements/pdf/footer.ctp` files to place it on every page generated in your pdf.
 
      ...
-    public $component = array(
+    public $components = array(
         'CakePdf.CakePdf' => array(
             'header' => '{name_of_header_file_element}',
             'footer' => '{name_of_footer_file_element}'
