@@ -1,12 +1,11 @@
 <?php
 App::uses('View', 'View');
-
-App::import('Lib', 'CakePdf.CakeTcpdf');
+App::uses('CakeTcpdf', 'CakePdf.Lib');
 
 class CakePdfComponent extends Component {
 
 	public $prefix = 'pdf';
-	public $layout = 'pdf';
+	public $layout = 'CakePdf.pdf';
 	
 	public $paper = 'A4';
 	public $orientation = '';

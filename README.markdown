@@ -1,12 +1,13 @@
-# CakePHP PDF plugin v2.0.0
+# CakePHP PDF plugin v2.0.1
 This plugin contains a component to generate PDFs using views.
 The CakePDF plugin is compatible with CakePHP 2.0+.
 
 ## Installation
 - Download the repository and extract it in `app/Plugin/CakePdf` or on one of your plugin paths.
 - Add a prefix in `app/Config/core.php`. The config declaration will be something like this `Configure::write('Routing.prefixes', array('admin', 'pdf'));`.
-- Load the plugin using bootstrap (do not forget to load bootstrap, it will add paths to vendors of this plugin):
+- Load the plugin:
 
+<<<<<<< HEAD
 		<?php
 		CakePlugin::load(array(
 			'CakePdf' => array(
@@ -14,6 +15,10 @@ The CakePDF plugin is compatible with CakePHP 2.0+.
 			)
 		));
 		?>
+=======
+	```
+	<?php CakePlugin::load('CakePdf'); ?>
+>>>>>>> Bootstrap was removed
 
 ## Usage
 In a controller add component declaration with something similar to the following:
