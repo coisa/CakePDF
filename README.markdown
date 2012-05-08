@@ -6,6 +6,7 @@ The CakePDF plugin is compatible with CakePHP 2.0+.
 - Download the repository and extract it in `app/Plugin/CakePdf` or on one of your plugin paths.
 - Add a prefix in `app/Config/core.php`. The config declaration will be something like this `Configure::write('Routing.prefixes', array('admin', 'pdf'));`.
 - Load the plugin:
+
 	```
 	<?php CakePlugin::load('CakePdf'); ?>
 
