@@ -52,7 +52,7 @@ By default we have the following properties:
     public $components = array(
         'CakePdf.CakePdf' => array(
             'prefix' => 'pdf',
-            'layout' => 'pdf',
+            'layout' => 'CakePdf.pdf',
             'filename' => '{name_of_action}.pdf', // this is the name on output pdf (when force download occurs)
             'orientation' => 'P',  // accept 'P' for portrait and 'L' for landscape
             'paper' => 'A4' // accept all paper types of tcpdf library
