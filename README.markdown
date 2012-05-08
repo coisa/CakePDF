@@ -43,7 +43,7 @@ If you want to change it you can set a `prefix` property on component.
     }
     ...
 
-Do not forget to add your customed prefix in `app/Config/core.php` file.
+Do not forget to add your custom prefix in `app/Config/core.php` file.
 
 You can also set a custom layout, filename, orientation, charset, paper.
 By default we have the following properties:
