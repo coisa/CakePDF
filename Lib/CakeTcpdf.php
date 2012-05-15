@@ -3,27 +3,27 @@ App::import('Vendor', 'CakePdf.TCPDF', array('file' => 'tcpdf/tcpdf.php'));
 
 class CakeTcpdf extends TCPDF {
 
-	private $__header;
-	private $__footer;
+	private $_header;
+	private $_footer;
 	
 	public function Header() {
 		if (!empty($this->headerHtml)) {
-			@parent::writeHTML($this->__header);
+			@parent::writeHTML($this->_header);
 		}
 	}
 	 
 	public function Footer() {
 		if (!empty($this->footerHtml)) {
-			@parent::writeHTML($this->__footer);
+			@parent::writeHTML($this->_footer);
 		}
 	}
 	
 	public function setHeaderHTML($html = null) {
-		$this->__header = $html;
+		$this->_header = $html;
 	}
 	
 	public function setFooterHTML($html = null) {
-		$this->__footer = $html;
+		$this->_footer = $html;
 	}
 
 }

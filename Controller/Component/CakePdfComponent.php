@@ -15,18 +15,18 @@ class CakePdfComponent extends Component {
 	public $header;
 	public $footer;
 	
-	private $__filename;
-	private $__render;
+	private $_filename;
+	private $_render;
 	
-	private $__loadCSS = '';
+	private $_loadCSS = '';
 	
-	private $__TCPDF;
+	private $_TCPDF;
 
 	public function initialize($controller) {
-		$this->__render = $this->prefix === Router::getParam('prefix');
+		$this->_render = $this->prefix === Router::getParam('prefix');
 		
-		if ($this->__render) {
-			$this->__TCPDF = new CakeTcpdf(
+		if ($this->_render) {
+			$this->_TCPDF = new CakeTcpdf(
 				$this->orientation,
 				'mm',
 				$this->paper,
@@ -34,57 +34,57 @@ class CakePdfComponent extends Component {
 				$this->charset
 			);
 			
-			$controller->set('TCPDF', $this->__TCPDF);
+			$controller->set('TCPDF', $this->_TCPDF);
 			
-			$this->__TCPDF->setMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
-			$this->__TCPDF->setHeaderMargin(PDF_MARGIN_HEADER);
-			$this->__TCPDF->setFooterMargin(PDF_MARGIN_FOOTER);
+			$this->_TCPDF->setMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
+			$this->_TCPDF->setHeaderMargin(PDF_MARGIN_HEADER);
+			$this->_TCPDF->setFooterMargin(PDF_MARGIN_FOOTER);
 			
-			$this->__TCPDF->setAutoPageBreak(true, PDF_MARGIN_BOTTOM);
-			$this->__TCPDF->setFontSize(10);
+			$this->_TCPDF->setAutoPageBreak(true, PDF_MARGIN_BOTTOM);
+			$this->_TCPDF->setFontSize(10);
 			
 			if (!empty($this->header)) {
-				$this->__TCPDF->setHeaderHTML(View::element('pdf' . DS . $this->header));
+				$this->_TCPDF->setHeaderHTML(View::element('pdf' . DS . $this->header));
 			} else {
-				$this->__TCPDF->setPrintHeader(false);
+				$this->_TCPDF->setPrintHeader(false);
 			}
 			
 			if (!empty($this->footer)) {
-				$this->__TCPDF->setFooterHTML(View::element('pdf' . DS . $this->footer));
+				$this->_TCPDF->setFooterHTML(View::element('pdf' . DS . $this->footer));
 			} else {
-				$this->__TCPDF->setPrintFooter(false);
+				$this->_TCPDF->setPrintFooter(false);
 			}
 			
-			$this->__TCPDF->addPage();
+			$this->_TCPDF->addPage();
 		}
 	}
 	
 	public function beforeRender($controller) {
-		if ($this->__render) {
+		if ($this->_render) {
 			$controller->layout = $this->layout;
 			
-			if (empty($this->__filename)) {
+			if (empty($this->_filename)) {
 				$this->setFilename($controller->request->action);
 			}
 		}
 	}
 	
 	public function shutdown($controller) {
-		if ($this->__render) {
+		if ($this->_render) {
 			$response = $controller->response->body();
 			
 			$controller->response->charset($this->charset);
 			$controller->response->type('pdf');
 			
-			if (!empty($this->__loadCSS)) {
-				$response = '<style>' . $this->__loadCSS . '</style>' . $response;
+			if (!empty($this->_loadCSS)) {
+				$response = '<style>' . $this->_loadCSS . '</style>' . $response;
 			}
 			
 			if (!empty($response)) {
-				@$this->__TCPDF->writeHTML($response, true, false, true, false, '');
+				@$this->_TCPDF->writeHTML($response, true, false, true, false, '');
 			}
 			
-			$this->__TCPDF->output($this->__filename, 'D');
+			$this->_TCPDF->output($this->_filename, 'D');
 			$this->_stop();
 		}
 	}
@@ -97,7 +97,7 @@ class CakePdfComponent extends Component {
 			$fullpath = CSS . $filename;
 		
 			if (file_exists($fullpath)) {
-				$this->__loadCSS .= file_get_contents($fullpath);
+				$this->_loadCSS .= file_get_contents($fullpath);
 			}
 		}
 	}
@@ -106,11 +106,11 @@ class CakePdfComponent extends Component {
 		if (!strstr($filename, '.pdf')) {
 			$filename .= '.pdf';
 		}
-		$this->__filename = $filename;
+		$this->_filename = $filename;
 	}
 	
 	public function dispatch($method, $params = array()) {
-		return call_user_method_array($method, $this->__TCPDF, $params);
+		return call_user_method_array($method, $this->_TCPDF, $params);
 	}
 
 }
