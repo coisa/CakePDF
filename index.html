@@ -1,0 +1,130 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Cakepdf by coisa</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Cakepdf</h1>
+        <p>PDF Component to use with CakePHP</p>
+        <p class="view"><a href="https://github.com/coisa/CakePDF">View the Project on GitHub <small>coisa/CakePDF</small></a></p>
+        <ul>
+          <li><a href="https://github.com/coisa/CakePDF/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/coisa/CakePDF/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/coisa/CakePDF">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>CakePHP PDF plugin v2.0.1</h1>
+
+<p>This plugin contains a component to generate PDFs using views.
+The CakePDF plugin is compatible with CakePHP 2.0+.</p>
+
+<h2>Installation</h2>
+
+<ul>
+<li>Download the repository and extract it in <code>app/Plugin/CakePdf</code> or on one of your plugin paths.</li>
+<li>Add a prefix in <code>app/Config/core.php</code>. The config declaration will be something like this <code>Configure::write('Routing.prefixes', array('admin', 'pdf'));</code>.</li>
+<li>
+<p>Load the plugin:</p>
+
+<pre><code>&lt;?php CakePlugin::load('CakePdf'); ?&gt;
+</code></pre>
+</li>
+</ul><h2>Usage</h2>
+
+<p>In a controller add component declaration with something similar to the following:</p>
+
+<pre><code>&lt;?php
+class Post extends AppController {
+    public $components = array(
+        'CakePdf.CakePdf'
+    );
+
+    public function pdf_index() {
+        // content of your action
+    }
+}
+?&gt;
+</code></pre>
+
+<p>In the view you only need use HTML or PHP code, it will be converted to PDF and force to download.</p>
+
+<h3>Configure</h3>
+
+<p>By default CakePdf use the prefix <code>pdf</code> to render actions.
+If you want to change it you can set a <code>prefix</code> property on component.</p>
+
+<pre><code>...
+public $components = array(
+    'CakePdf.CakePdf' =&gt; array(
+        'prefix' =&gt; 'mypdf'
+    )
+);
+
+public function mypdf_index() {
+    // content of your action
+}
+...
+</code></pre>
+
+<p>Do not forget to add your custom prefix in <code>app/Config/core.php</code> file.</p>
+
+<p>You can also set a custom layout, filename, orientation, charset, paper.
+By default we have the following properties:</p>
+
+<pre><code>...
+public $components = array(
+    'CakePdf.CakePdf' =&gt; array(
+        'prefix' =&gt; 'pdf',
+        'layout' =&gt; 'CakePdf.pdf',
+        'filename' =&gt; '{name_of_action}.pdf', // this is the name on output pdf (when force download occurs)
+        'orientation' =&gt; 'P',  // accept 'P' for portrait and 'L' for landscape
+        'paper' =&gt; 'A4' // accept all paper types of tcpdf library
+    )
+);
+...
+</code></pre>
+
+<p>In addition to this you can create a header <code>app/View/Elements/pdf/header.ctp</code> or footer <code>app/View/Elements/pdf/footer.ctp</code> files to place it on every page generated in your pdf.</p>
+
+<pre><code> ...
+public $components = array(
+    'CakePdf.CakePdf' =&gt; array(
+        'header' =&gt; '{name_of_header_file_element}',
+        'footer' =&gt; '{name_of_footer_file_element}'
+    )
+);
+...
+</code></pre>
+
+<h3>Additional Methods</h3>
+
+<ul>
+<li>
+<code>setFilename($filename)</code> : It will change the output filename.</li>
+<li>
+<code>addStyle($files)</code> : Add css expressions to render in pdf view. The <code>$files</code> argument accepts a string path of file, or an array of path files (it automatically refer to folder <code>webroot/css/</code>).</li>
+<li>
+<code>dispatch($method, $params)</code> : Used to perform the TCPDF methods that where not directly implemented in this component.</li>
+</ul>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/coisa">coisa</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
